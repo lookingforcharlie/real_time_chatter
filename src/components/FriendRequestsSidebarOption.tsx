@@ -24,7 +24,9 @@ const FriendRequestsSidebarOption: FC<FriendRequestsSidebarOptionProps> = ({
       toPusherKey(`user:${sessionId}:incoming_friend_requests`)
     );
 
-    console.log('listening to ', `user:${sessionId}:incoming_friend_requests`);
+    // console.log('listening to ', `user:${sessionId}:incoming_friend_requests`);
+
+    pusherClient.subscribe(toPusherKey(`user:${sessionId}:friends`));
 
     const friendRequestHandler = () => {
       setUnseenRequestCount((prev) => prev + 1);
@@ -33,12 +35,21 @@ const FriendRequestsSidebarOption: FC<FriendRequestsSidebarOptionProps> = ({
     // tell it what to do, bind a function with provided name
     pusherClient.bind('incoming_friend_requests', friendRequestHandler);
 
+    // After handle one of the request, the number will be decremented by 1
+    const addedFriendHandler = () => {
+      setUnseenRequestCount((prev) => prev - 1);
+    };
+    pusherClient.bind('new_friend', addedFriendHandler);
+
     // clean up function
     return () => {
       pusherClient.unsubscribe(
         toPusherKey(`user:${sessionId}:incoming_friend_requests`)
       );
       pusherClient.unbind('incoming_friend_requests', friendRequestHandler);
+
+      pusherClient.unsubscribe(toPusherKey(`user:${sessionId}:friends`));
+      pusherClient.unbind('new_friend', addedFriendHandler);
     };
   }, [sessionId]);
 

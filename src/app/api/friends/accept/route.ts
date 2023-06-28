@@ -46,30 +46,44 @@ export async function POST(req: Request) {
       return new Response('No request from this friend', { status: 400 });
     }
 
+    // fetch the user info and friend info of the person that I am adding
+    const [userVintage, friendVintage] = (await Promise.all([
+      fetchRedis('get', `user:${session.user.id}`),
+      fetchRedis('get', `user:${idToAdd}`),
+    ])) as [string, string];
+
+    const user = JSON.parse(userVintage) as User;
+    const friend = JSON.parse(friendVintage) as User;
+
     // Notify added user:
-    pusherServer.trigger(
-      toPusherKey(`user:${idToAdd}:friends`),
-      'new_friend',
-      {}
-    );
+    await Promise.all([
+      pusherServer.trigger(
+        toPusherKey(`user:${idToAdd}:friends`),
+        'new_friend',
+        user
+      ),
+      pusherServer.trigger(
+        toPusherKey(`user:${session.user.id}:friends`),
+        'new_friend',
+        friend
+      ),
 
-    // Approve and add the friend in friends set in Redis DB
-    await redis.sadd(`user:${session.user.id}:friends`, idToAdd);
-    // Also adding user to requester's friend list, it's I am your friend, you are my friend automatically situation
-    await redis.sadd(`user:${idToAdd}:friends`, session.user.id);
+      // Approve and add the friend in friends set in Redis DB
+      redis.sadd(`user:${session.user.id}:friends`, idToAdd),
+      // Also adding user to requester's friend list, it's I am your friend, you are my friend automatically situation
+      redis.sadd(`user:${idToAdd}:friends`, session.user.id),
 
-    // Clear up the friends request in Redis
-    // outbound_friend_request supposes to belong to the requester, didn't implement at this point
-    // await redis.srem(
-    //   `user:${idToAdd}:outbound_friend_requests`,
-    //   session.user.id
-    // );
+      // Clear up the friends request in Redis
+      // outbound_friend_request supposes to belong to the requester, didn't implement at this point
+      // await redis.srem(
+      //   `user:${idToAdd}:outbound_friend_requests`,
+      //   session.user.id
+      // );
 
-    // Remove the friend request
-    await redis.srem(
-      `user:${session.user.id}:incoming_friend_requests`,
-      idToAdd
-    );
+      // Remove the friend request
+      redis.srem(`user:${session.user.id}:incoming_friend_requests`, idToAdd),
+    ]);
+
     // It will return '500 Internal Server Error', if we don't return new Response('OK');
     return new Response('OK');
   } catch (error) {

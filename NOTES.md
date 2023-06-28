@@ -127,54 +127,10 @@ At 2:18:00, the problem was not a caching issue. It was a syntax issue. There sh
 2 months ago (edited)
 Just finished watching the video. For some reason in production with Vercel the realtime functions are not working smooth. After I do something like sending a chat or friend request, I have to refresh the page of the user that just triggered an event so the other user's page is updated realtime. Like on the chat page, real time chats is not working and the second user does not see the live new msg. If I refresh the page, then the second user displays the new msg the first user sent without having to refresh their page. Any ideas why this is happening? Everything works in dev mode. Edit: doesnt matter which user refreshes the page. after one user refreshes the page, it shows the realtime data
 
-1
-
-Reply
-
-8 replies
-@AMPxLEADER
-@AMPxLEADER
-2 months ago
-The only thing that works in production mode is when a user accepts a new friend request and updates list of "Your chats" for both users in real time.
-
-Reply
-
-@hamza_se
-@hamza_se
-2 months ago
-@AMPxLEADER Same brother. Have you found any solution for it?
-
-Reply
-
-@AMPxLEADER
-@AMPxLEADER
-1 month ago
-@hamza_se No luck. You?
-
-Reply
-
-@hamza_se
-@hamza_se
-1 month ago
-@AMPxLEADER Nope
-
-Reply
-
-@AMPxLEADER
-@AMPxLEADER
-1 month ago
-@hamza_se I think its a problem with pusher. Like I'm not sure if something needs to be changed to pusher when the app is deployed. Because I am also getting this same problem in a school project that I am working on and I'm using pusher.
-
-1
-
-Reply
-
 @hamza_se
 @hamza_se
 1 month ago
 @AMPxLEADER I got the solution, you just have to await all the pusher triggers in the api.
-
-2
 
 Reply
 
@@ -182,6 +138,3 @@ Reply
 @AMPxLEADER
 1 month ago
 @hamza_se Thank you! that worked
-
-Fixed the dashboard, show recent chats
-Implement Mobile Interface
