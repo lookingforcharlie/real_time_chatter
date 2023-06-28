@@ -52,7 +52,7 @@ const FriendRequests: FC<FriendRequestsProps> = ({
       );
       pusherClient.unbind('incoming_friend_requests', friendRequestHandler);
     };
-  }, []);
+  }, [sessionId]);
 
   const acceptFriend = async (senderId: string) => {
     //TODO: Create this endpoint

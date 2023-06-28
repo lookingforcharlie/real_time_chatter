@@ -3,6 +3,8 @@ import { z } from 'zod';
 import { fetchRedis } from '../../../../helpers/redis';
 import { authOptions } from '../../../../lib/auth';
 import { redis } from '../../../../lib/db';
+import { pusherServer } from '../../../../lib/pusher';
+import { toPusherKey } from '../../../../lib/utils';
 
 // Logic code to accept friend
 export async function POST(req: Request) {
@@ -43,6 +45,13 @@ export async function POST(req: Request) {
     if (!hasFriendRequest) {
       return new Response('No request from this friend', { status: 400 });
     }
+
+    // Notify added user:
+    pusherServer.trigger(
+      toPusherKey(`user:${idToAdd}:friends`),
+      'new_friend',
+      {}
+    );
 
     // Approve and add the friend in friends set in Redis DB
     await redis.sadd(`user:${session.user.id}:friends`, idToAdd);

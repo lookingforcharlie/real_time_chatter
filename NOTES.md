@@ -2,6 +2,7 @@
 
 ## Functions
 
+- Reusable components: button
 - Database
 - Authentication
 - Sending friend request
@@ -10,6 +11,14 @@
 - Real time chatting
 - Route protection
 - Loading state using skeleton effect
+
+## Expecting Update and Bugs Fixing
+
+- Add App Logo
+- Add Demo
+- Dashboard is a bit run-down
+- Requester's friend list doesn't update in real time
+- After user handles the request, the number of requests need to be decremented by 1
 
 ## Database: Upstash
 
@@ -36,13 +45,15 @@
 
 ## Packages installed
 
-### cva - Allows us to write classes that we can use wherever we render the button
+```bash
+npm i class-variance-authority
+# cva - Allows us to write classes that we can use wherever we render the button
+```
 
-- npm i class-variance-authority
-
-### Lucide - icons dependency
-
-- npm i lucide-react
+```bash
+npm i lucide-react
+# Lucide - icons dependency
+```
 
 ### Conditional className
 
@@ -86,6 +97,11 @@
 ### Build a middleware
 
 - Create a file: src/middleware.ts
+
+### Wrapping up project
+
+- npm run lint: to check and fix lint errors
+- npm run build
 
 ###### Helper in the Comments
 

@@ -62,8 +62,8 @@ const page = async ({ params }: PageProps) => {
 
   return (
     <>
-      <div>The Chat is between:</div>
-      <div>{params.chatId}</div>
+      {/* <div>The Chat is between:</div>
+      <div>{params.chatId}</div> */}
       {/* keep chat interface from overflow the page*/}
       <div className='flex-1 justify-between flex flex-col h-full max-h-[calc(100vh-10rem)]'>
         <div className='flex sm:item-center justify-between py-3 border-b-2 border-gray-200'>
