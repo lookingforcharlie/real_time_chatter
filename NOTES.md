@@ -20,7 +20,7 @@
 - Requester's friend list doesn't update in real time
 - After user handles the request, the number of requests need to be decremented by 1
 
-## Database: Upstash
+## Database: Upstash ( Redis Service Provider)
 
 - Redis get data from the cache from the memory, it's store in a JavaScript constant
 - Lots of people use Redis for caching, it's actually a fully fledged database that's super fast.
@@ -29,7 +29,7 @@
 - npm i @upstash/redis
 - db.ts in lib folder contains the setup for Redis
 
-### Regarding Next.JS
+## Regarding Next.JS
 
 - In Next.js all the components are server side components by default, server components don't have any interaction with users, meaning we can't use something like onClick etc.
 
@@ -39,11 +39,12 @@
 
 - Compare with React, we use different route system, <Link />, <Image />, router.refresh(),
 
-## Next Auth
-
-- npm i --save next-auth
-
 ## Packages installed
+
+```bash
+npm i --save next-auth
+# Next Auth
+```
 
 ```bash
 npm i class-variance-authority
@@ -55,44 +56,58 @@ npm i lucide-react
 # Lucide - icons dependency
 ```
 
-### Conditional className
+```bash
+npm i clsx
+# Conditional className
+```
 
-- npm i clsx
+```bash
+npm tailwind-merge
+# Merge Tailwind CSS classes together for cleaner tailwind code
+```
 
-### Merge Tailwind CSS classes together for cleaner tailwind code
+```bash
+npm i react-hot-toast
+# for toast notification
+# Create Providers.tsx, wrap the whole application using <Providers></Providers>
+```
 
-- npm tailwind-merge
+```bash
+npm i @tailwindcss/forms
+# Tailwind CSS form package to make form look prettier
+```
 
-### for toast notification
+```bash
+npm install react-hook-form @hookform/resolvers
+# React Form
+```
 
-- npm i react-hot-toast
-- Create Providers.tsx, wrap the whole application using <Providers></Providers>
+```bash
+npm install react-textarea-autosize
+# react-textarea-autosize to create textarea on the page
+```
 
-### Tailwind CSS form package to make form look prettier
+```bash
+npm install date-fns
+# date-fns to convert cryptic timestamp into readable time format
+```
 
-- npm i @tailwindcss/forms
+```bash
+npm install pusher pusher-js
+# [Pusher](https://pusher.com/) provides real time service
+# pusher for server side, pusher-js for client side
+# get pusher credentials from pusher.com to get started
+```
 
-### React Form
+```bash
+npm install react-loading-skeleton
+# React Loading Skeleton: implement a skeleton loading effect
+```
 
-- npm install react-hook-form @hookform/resolvers
-
-### react-textarea-autosize to create textarea on the page
-
-- npm install react-textarea-autosize
-
-### date-fns to convert cryptic timestamp into readable time format
-
-- npm install date-fns
-
-### https://pusher.com/ provide real time service
-
-- npm install pusher pusher-js
-- pusher for server side, pusher-js for client side
-- get pusher credentials from pusher.com to get started
-
-### React Loading Skeleton: implement a skeleton loading effect
-
-- npm install react-loading-skeleton
+```bash
+npm i @headlessui/react
+# Implement mobile interface for chatter
+```
 
 ### Build a middleware
 
@@ -167,3 +182,6 @@ Reply
 @AMPxLEADER
 1 month ago
 @hamza_se Thank you! that worked
+
+Fixed the dashboard, show recent chats
+Implement Mobile Interface
