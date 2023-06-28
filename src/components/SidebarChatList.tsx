@@ -63,7 +63,7 @@ const SidebarChatList = ({ friends, sessionId }: SidebarChatListProps) => {
       pusherClient.unsubscribe(toPusherKey(`user:${sessionId}:chats`));
       pusherClient.unsubscribe(toPusherKey(`user:${sessionId}:friends`));
     };
-  }, []);
+  }, [pathname, sessionId, router]);
 
   // Verify if the uer seen the message or not
   // senderId will be taken out if the user has seen the message, why ??

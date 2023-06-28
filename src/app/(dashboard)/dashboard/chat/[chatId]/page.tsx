@@ -39,6 +39,8 @@ async function getChatMessage(chatId: string) {
 }
 
 const page = async ({ params }: PageProps) => {
+  // to see the skeleton effect
+  // await new Promise((resolve) => setTimeout(resolve, 5000));
   const { chatId } = params;
   const session = await getServerSession(authOptions);
   if (!session) notFound();

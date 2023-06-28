@@ -1,5 +1,16 @@
 ## File base routing system
 
+## Functions
+
+- Database
+- Authentication
+- Sending friend request
+- Seeing friend request
+- Accepting friend request
+- Real time chatting
+- Route protection
+- Loading state using skeleton effect
+
 ## Database: Upstash
 
 - Redis get data from the cache from the memory, it's store in a JavaScript constant
@@ -67,6 +78,10 @@
 - npm install pusher pusher-js
 - pusher for server side, pusher-js for client side
 - get pusher credentials from pusher.com to get started
+
+### React Loading Skeleton: implement a skeleton loading effect
+
+- npm install react-loading-skeleton
 
 ### Build a middleware
 
