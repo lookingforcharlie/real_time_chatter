@@ -25,7 +25,7 @@ const Page: FC = () => {
         <div className='w-full flex flex-col border border-gray-400 rounded-md shadow-lg px-20 py-20 items-center max-w-md space-y-8'>
           <div className='flex flex-col items-center gap-8 '>
             <h2 className='text-center text-4xl font-bold tracking-tight text-gray-900'>
-              Let's chat ...
+              Let&apos;s chat ...
             </h2>
             <div>
               <Image
@@ -35,7 +35,7 @@ const Page: FC = () => {
                 alt='App Logo'
               />
             </div>
-            <h2 className='mt-6 text-center text-3xl font-bold tracking-tight text-gray-900'>
+            <h2 className='mt-6 text-center text-2xl font-bold tracking-tight text-gray-900'>
               Sign in to your account
             </h2>
           </div>
