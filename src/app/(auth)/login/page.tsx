@@ -1,5 +1,6 @@
 'use client';
 import { signIn } from 'next-auth/react';
+import Image from 'next/image';
 import { FC, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import Button from '../../../components/ui/Button';
@@ -20,10 +21,20 @@ const Page: FC = () => {
   }
   return (
     <>
-      <div className='flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8'>
-        <div className='w-full flex flex-col items-center max-w-md space-y-8'>
+      <div className='flex min-h-full mt-20 items-center justify-center  py-12 px-4 sm:px-6 lg:px-8'>
+        <div className='w-full flex flex-col border border-gray-400 rounded-md shadow-lg px-20 py-20 items-center max-w-md space-y-8'>
           <div className='flex flex-col items-center gap-8 '>
-            logo
+            <h2 className='text-center text-4xl font-bold tracking-tight text-gray-900'>
+              Let's chat ...
+            </h2>
+            <div>
+              <Image
+                src='/chatter_logo.png'
+                height={200}
+                width={200}
+                alt='App Logo'
+              />
+            </div>
             <h2 className='mt-6 text-center text-3xl font-bold tracking-tight text-gray-900'>
               Sign in to your account
             </h2>
@@ -31,7 +42,7 @@ const Page: FC = () => {
           <Button
             isLoading={isLoading}
             type='button'
-            className='max-w-sm mx-auto w-full'
+            className='max-w-md mx-auto w-full'
             onClick={loginWithGoogle}
           >
             {isLoading ? null : (
