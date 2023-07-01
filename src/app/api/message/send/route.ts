@@ -56,7 +56,7 @@ export async function POST(req: Request) {
     const message = messageValidator.parse(messageData);
 
     // Notify all connected chat room client
-    pusherServer.trigger(
+    await pusherServer.trigger(
       toPusherKey(`chat:${chatId}`),
       'incoming_message', // name of the event
       message // data we want to pass to the function
